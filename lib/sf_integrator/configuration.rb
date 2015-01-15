@@ -1,12 +1,12 @@
 module SfIntegrator
+
   class Configuration
-    class << self
-      attr_accessor :username, :password, :client_id, :client_secret
+    attr_accessor :username, :password, :client_id, :client_secret
 
-      def config
-        yield self
-      end
+    def to_hash
+      { username: username, password: password, client_id: client_id, client_secret: client_secret  }
     end
-  end
-end
 
+  end
+
+end
