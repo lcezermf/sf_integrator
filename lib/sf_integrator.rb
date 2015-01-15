@@ -1,5 +1,6 @@
 require "sf_integrator/version"
+require "sf_integrator/configuration"
+require "sf_integrator/lead"
 
 module SfIntegrator
-  # Your code goes here...
 end
