@@ -46,7 +46,13 @@ describe SfIntegrator::Lead do
   it { expect(lead).to respond_to(:create) }
   it { expect(described_class).to respond_to(:all) }
 
-  xcontext 'create new lead' do
+  context '#all' do
+    it 'return an array' do
+      expect(SfIntegrator::Lead.all).to be_an_instance_of(Array)
+    end
+  end
+
+  context 'create new lead' do
     context 'when success' do
       it do
         result = lead.create
