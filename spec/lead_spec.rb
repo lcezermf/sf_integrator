@@ -50,16 +50,16 @@ describe SfIntegrator::Lead do
     expect(lead.website).to eql('github.com/lccezinha')
   end
 
-  xcontext 'create new lead' do
+  context 'create new lead' do
     context 'when success' do
       it do
-        lead.first_name = 'Luiz'
-        lead.last_name  = 'Cezer'
-        lead.email = 'lccezinha@gmail.com'
+        lead.first_name = 'Cezer'
+        lead.last_name  = 'Filho'
+        lead.email = 'luiz.cezer@gmail.com'
         lead.company = 'Google'
         lead.job_title = 'Rails Dev'
         lead.phone = '5555555'
-        lead.website = 'github.com/lccezinha'
+        lead.website = 'http://github.com/lccezinha'
 
         result = lead.create
 
