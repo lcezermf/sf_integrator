@@ -17,8 +17,5 @@ module SfIntegrator
       { FirstName: first_name, LastName: last_name, Email: email, Company: company, Title: job_title, Phone: phone, Website: website }
     end
 
-    def authenticate
-      client.authenticate!
-    end
   end
 end
