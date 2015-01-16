@@ -14,9 +14,9 @@ describe SfIntegrator::Integrator do
       end
     end
 
-    it { expect(subject.instance.configs.username).to eql('lccezinha@gmail.com') }
-    it { expect(subject.instance.configs.password).to eql('batata880AvOSHd43zql8ZIMJ1emQNjkt') }
-    it { expect(subject.instance.configs.client_id).to eql('3MVG9xOCXq4ID1uFbfzoMHMM0bGJfUgjThmhEmajKOh75cvDlJn.E3g5FYx2R45vTpFRJfiPDfda5o.td8HQ2') }
-    it { expect(subject.instance.configs.client_secret).to eql('3340784302062558262') }
+    it { expect(subject.configs.username).to eql('lccezinha@gmail.com') }
+    it { expect(subject.configs.password).to eql('batata880AvOSHd43zql8ZIMJ1emQNjkt') }
+    it { expect(subject.configs.client_id).to eql('3MVG9xOCXq4ID1uFbfzoMHMM0bGJfUgjThmhEmajKOh75cvDlJn.E3g5FYx2R45vTpFRJfiPDfda5o.td8HQ2') }
+    it { expect(subject.configs.client_secret).to eql('3340784302062558262') }
   end
 end
