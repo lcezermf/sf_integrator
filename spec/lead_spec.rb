@@ -13,8 +13,8 @@ describe SfIntegrator::Lead do
   context 'accessors' do
     [:client, :first_name, :last_name, :email, :company, :job_title, :phone, :website].each do |attribute|
       context attribute.to_s do
-        it { expect(subject).to respond_to attribute }
-        it { expect(subject).to respond_to "#{attribute}=" }
+        it { expect(lead).to respond_to attribute }
+        it { expect(lead).to respond_to "#{attribute}=" }
       end
     end
   end
@@ -24,13 +24,13 @@ describe SfIntegrator::Lead do
       [:first_name, :last_name, :email, :company, :job_title, :phone, :website].each do |attribute|
         it attribute.to_s do
           lead.send("#{attribute}=", '')
-          expect(subject).not_to be_valid
+          expect(lead).not_to be_valid
         end
       end
     end
   end
 
-  it { expect(subject).to respond_to(:create) }
+  it { expect(lead).to respond_to(:create) }
 
   it 'match values' do
     lead.first_name = 'Luiz'
@@ -50,7 +50,7 @@ describe SfIntegrator::Lead do
     expect(lead.website).to eql('github.com/lccezinha')
   end
 
-  context 'create new lead' do
+  xcontext 'create new lead' do
     context 'when success' do
       it do
         lead.first_name = 'Luiz'
