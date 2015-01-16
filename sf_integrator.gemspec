@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = SfIntegrator::VERSION
   spec.authors       = ["Luiz Cezer"]
   spec.email         = ["lccezinha@gmail.com"]
-  spec.summary       = %q{TODO: Integration with Sales Force leads. }
-  spec.description   = %q{TODO: Integration with Sales Force leads. }
+  spec.summary       = %q{ Integration with Sales Force leads. }
+  spec.description   = %q{ Integration with Sales Force leads. }
   spec.homepage      = "http://github.com/lccezinha/sf_integrator"
   spec.license       = "MIT"
 
