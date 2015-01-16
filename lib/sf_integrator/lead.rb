@@ -1,5 +1,12 @@
+require 'active_model'
+
 module SfIntegrator
   class Lead
+    include ActiveModel::Validations
+
+    validates :first_name, :last_name, :email, :company, :job_title, :phone, :website, presence: true
+    # validates :first_name, :last_name, :company, :job_title, format: { with: /\w/ }
+
     attr_accessor :client, :first_name, :last_name, :email, :company, :job_title, :phone, :website
 
     def initialize

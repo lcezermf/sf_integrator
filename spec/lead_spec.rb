@@ -8,11 +8,24 @@ describe SfIntegrator::Lead do
     it { expect(lead).to be_an_instance_of(SfIntegrator::Lead) }
   end
 
+  it { expect(described_class.ancestors).to include(ActiveModel::Validations) }
+
   context 'accessors' do
-    [:client, :first_name, :last_name, :email, :company, :job_title, :phone, :website].each do |field|
-      context field.to_s do
-        it { expect(subject).to respond_to field }
-        it { expect(subject).to respond_to "#{field}=" }
+    [:client, :first_name, :last_name, :email, :company, :job_title, :phone, :website].each do |attribute|
+      context attribute.to_s do
+        it { expect(subject).to respond_to attribute }
+        it { expect(subject).to respond_to "#{attribute}=" }
+      end
+    end
+  end
+
+  context 'validations' do
+    context 'presence_of' do
+      [:first_name, :last_name, :email, :company, :job_title, :phone, :website].each do |attribute|
+        it attribute.to_s do
+          lead.send("#{attribute}=", '')
+          expect(subject).not_to be_valid
+        end
       end
     end
   end
@@ -49,6 +62,7 @@ describe SfIntegrator::Lead do
         lead.website = 'github.com/lccezinha'
 
         result = lead.create
+
         expect(result).to match(/[a-z]|[A-Z]|[0-9]/)
       end
     end
