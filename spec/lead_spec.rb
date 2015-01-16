@@ -2,7 +2,10 @@ require 'spec_helper'
 require_relative '../lib/sf_integrator/lead.rb'
 
 describe SfIntegrator::Lead do
-  subject(:lead) { described_class.new }
+  let(:attributes) {
+    { first_name: 'Cezer', last_name: 'Filho', email: 'luiz.cezer@yahoo.com.br', company: 'Google', job_title: 'Developer', phone: '5555555', website: 'http://github.com/lccezinha' }
+  }
+  subject(:lead) { described_class.new(attributes) }
 
   context 'be instance of SfIntegrator::Lead' do
     it { expect(lead).to be_an_instance_of(SfIntegrator::Lead) }
@@ -11,12 +14,22 @@ describe SfIntegrator::Lead do
   it { expect(described_class.ancestors).to include(ActiveModel::Validations) }
 
   context 'accessors' do
-    [:client, :first_name, :last_name, :email, :company, :job_title, :phone, :website].each do |attribute|
+    [:first_name, :last_name, :email, :company, :job_title, :phone, :website].each do |attribute|
       context attribute.to_s do
         it { expect(lead).to respond_to attribute }
         it { expect(lead).to respond_to "#{attribute}=" }
       end
     end
+  end
+
+  it 'match values' do
+    expect(lead.first_name).to eql('Cezer')
+    expect(lead.last_name).to eql('Filho')
+    expect(lead.email).to eql('luiz.cezer@yahoo.com.br')
+    expect(lead.company).to eql('Google')
+    expect(lead.job_title).to eql('Developer')
+    expect(lead.phone).to eql('5555555')
+    expect(lead.website).to eql('http://github.com/lccezinha')
   end
 
   context 'validations' do
@@ -31,36 +44,11 @@ describe SfIntegrator::Lead do
   end
 
   it { expect(lead).to respond_to(:create) }
+  it { expect(described_class).to respond_to(:all) }
 
-  it 'match values' do
-    lead.first_name = 'Luiz'
-    lead.last_name  = 'Cezer'
-    lead.email = 'lccezinha@gmail.com'
-    lead.company = 'Google'
-    lead.job_title = 'Rails Dev'
-    lead.phone = '5555555'
-    lead.website = 'github.com/lccezinha'
-
-    expect(lead.first_name).to eql('Luiz')
-    expect(lead.last_name).to eql('Cezer')
-    expect(lead.email).to eql('lccezinha@gmail.com')
-    expect(lead.company).to eql('Google')
-    expect(lead.job_title).to eql('Rails Dev')
-    expect(lead.phone).to eql('5555555')
-    expect(lead.website).to eql('github.com/lccezinha')
-  end
-
-  context 'create new lead' do
+  xcontext 'create new lead' do
     context 'when success' do
       it do
-        lead.first_name = 'Cezer'
-        lead.last_name  = 'Filho'
-        lead.email = 'luiz.cezer@gmail.com'
-        lead.company = 'Google'
-        lead.job_title = 'Rails Dev'
-        lead.phone = '5555555'
-        lead.website = 'http://github.com/lccezinha'
-
         result = lead.create
 
         expect(result).to match(/[a-z]|[A-Z]|[0-9]/)
@@ -68,10 +56,10 @@ describe SfIntegrator::Lead do
     end
 
     context 'when fail' do
+      let(:attributes) { { first_name: 'Cezer' } }
+      subject(:fail_lead) { described_class.new(attributes) }
       it do
-        lead.first_name = 'Luiz'
-
-        result = lead.create
+        result = fail_lead.create
 
         expect(result).to eq(false)
       end
