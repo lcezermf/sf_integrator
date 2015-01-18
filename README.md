@@ -1,12 +1,12 @@
 # SfIntegrator
 
-TODO: Write a gem description
+Simple integration with salesforce leads.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'sf_integrator'
+    gem 'sf_integrator', '1.0.1'
 
 And then execute:
 
@@ -18,9 +18,9 @@ Or install it yourself as:
 
 ## Configuration
 
-First, create a new file in called `sf_integrator.rb` in `config/initializers` path.
+First, create a new file `sf_integrator.rb` in `config/initializers` path.
 
-In this file, you put this configs:
+In this file, you put this template config:
 
 ```ruby
 SfIntegrator::Integrator.configure do |config|
@@ -31,16 +31,18 @@ SfIntegrator::Integrator.configure do |config|
 end
 ```
 
+It is importante change the values of the keys for your credentials
+
 ## Usage
 
-After that you create a simple ruby class in `models` directory that inherits from `SfIntegrator::Lead`
+After that you create a simple ruby class in `models` directory, this class must inherits from `SfIntegrator::Lead`
 
 ```ruby
 class Lead < SfIntegrator::Lead
 end
 ```
 
-In you controller you can use like a `ActiveRecord` model
+In you controller:
 
 ```ruby
   # app/controllers/leads_controller.rb
@@ -48,8 +50,8 @@ In you controller you can use like a `ActiveRecord` model
   def index
     @leads = Lead.all
   end
+
   def new
-    @lead = Lead.new
   end
 
   def create
