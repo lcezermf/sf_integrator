@@ -14,6 +14,5 @@ module SfIntegrator
     def self.configs
       instance.configs
     end
-
   end
 end

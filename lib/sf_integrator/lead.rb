@@ -4,9 +4,8 @@ module SfIntegrator
   class Lead
     include ActiveModel::Validations
 
-    validates :first_name, :last_name, :email, :company, :job_title, :phone, :website, presence: true
-
     attr_accessor :first_name, :last_name, :email, :company, :job_title, :phone, :website
+    validates :first_name, :last_name, :email, :company, :job_title, :phone, :website, presence: true
 
     def initialize(args)
       @first_name = args[:first_name]
@@ -28,6 +27,7 @@ module SfIntegrator
 
     def self.all
       records = client.query('select FirstName, LastName, Email, Company, Title, Phone, Website from Lead')
+
       records.map do |record|
         attributes = {
           first_name: record.FirstName, last_name: record.LastName, email: record.Email,
@@ -42,6 +42,5 @@ module SfIntegrator
     def self.client
       @client ||= Restforce.new(SfIntegrator::Integrator.configs.to_hash)
     end
-
   end
 end

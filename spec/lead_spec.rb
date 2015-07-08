@@ -11,6 +11,8 @@ describe SfIntegrator::Lead do
     it { expect(lead).to be_an_instance_of(SfIntegrator::Lead) }
   end
 
+  it { expect(lead).to respond_to(:create) }
+  it { expect(described_class).to respond_to(:all) }
   it { expect(described_class.ancestors).to include(ActiveModel::Validations) }
 
   context 'accessors' do
@@ -43,9 +45,6 @@ describe SfIntegrator::Lead do
     end
   end
 
-  it { expect(lead).to respond_to(:create) }
-  it { expect(described_class).to respond_to(:all) }
-
   context '#all' do
     it 'return an array' do
       expect(SfIntegrator::Lead.all).to be_an_instance_of(Array)
@@ -64,6 +63,7 @@ describe SfIntegrator::Lead do
     context 'when fail' do
       let(:attributes) { { first_name: 'Cezer' } }
       subject(:fail_lead) { described_class.new(attributes) }
+
       it do
         result = fail_lead.create
 
